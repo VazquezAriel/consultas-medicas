@@ -25,6 +25,6 @@ docker-compose up -d
 ```
 
 # Stack usado
-* MongoDB
+* Postgresql
 * Nest
 * Docker
