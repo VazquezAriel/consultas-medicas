@@ -24,6 +24,12 @@ npm install
 docker-compose up -d
 ```
 
+5. Ejecutar en modo desarrollo
+```
+npm run start:dev
+```
+
+
 # Stack usado
 * Postgresql
 * Nest
