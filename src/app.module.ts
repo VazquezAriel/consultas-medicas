@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ComprobantesModule } from './comprobantes/comprobantes.module';
+import { ColaboradoresModule } from './colaboradores/colaboradores.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { ComprobantesModule } from './comprobantes/comprobantes.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ComprobantesModule
+    ComprobantesModule,
+    ColaboradoresModule
     
   ],
 })
