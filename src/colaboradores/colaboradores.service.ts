@@ -1,35 +1,50 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
 import { Repository } from 'typeorm';
 import { Colaborador } from './entities/colaborador.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { RolesService } from '../roles/roles.service';
 
 @Injectable()
 export class ColaboradoresService {
 
   constructor(
     @InjectRepository(Colaborador)
-    private readonly repository:Repository<Colaborador>
+    private readonly repository:Repository<Colaborador>,
+
+    private readonly rolesService:RolesService,
+    
   ){}
 
-  async create(createColaboradoreDto: CreateColaboradorDto) {
+  async create({rol, ...colaboradorDto}: CreateColaboradorDto) {
 
-    try {
+    const rolObj = await this.rolesService.findByDescripcion(rol);
 
-      const colaborador = this.repository.create(createColaboradoreDto);
+    try{
+
+      const colaborador = this.repository.create({...colaboradorDto, rol: rolObj});
 
       await this.repository.save(colaborador);
 
-      return colaborador;
+      return {...colaborador, rol: colaborador.rol.descripcion};
 
     } catch (error) {
+
       this.handleExceptions(error);
+
     }
   }
 
-  findAll() {
-    return this.repository.find({});
+  async findAll() {
+
+    const colaboradores = await this.repository.find();
+
+    return colaboradores.map(colaborador => ({
+      ...colaborador,
+      rol: colaborador.rol.descripcion
+    }));
+    
   }
 
   findOne(id: number) {

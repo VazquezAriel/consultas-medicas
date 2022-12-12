@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ComprobantesModule } from './comprobantes/comprobantes.module';
 import { ColaboradoresModule } from './colaboradores/colaboradores.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { ColaboradoresModule } from './colaboradores/colaboradores.module';
       synchronize: true,
     }),
     ComprobantesModule,
-    ColaboradoresModule
+    ColaboradoresModule,
+    RolesModule
     
   ],
 })

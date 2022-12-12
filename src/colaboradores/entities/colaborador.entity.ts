@@ -1,4 +1,5 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Rol } from 'src/roles/entities/rol.entity';
+import { BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Colaborador {
@@ -30,10 +31,7 @@ export class Colaborador {
     @Column('text')
     contrasenia: string;
 
-    @Column('text')
-    rol: string;
-
-    //@BeforeInsert()
-    
+    @ManyToOne( () => Rol, (rol) => rol.colaboradores, {nullable: false, eager:true})
+    rol: Rol;
 
 }

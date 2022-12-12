@@ -1,4 +1,5 @@
-import { IsEmail, IsIn, IsMobilePhone, IsOptional, IsPhoneNumber, IsString, Length, MaxLength, MinLength } from "class-validator";
+import { IsEmail, IsNumberString, IsObject, IsOptional, IsString, Length, MinLength } from "class-validator";
+import { Rol } from "src/roles/entities/rol.entity";
 
 export class CreateColaboradorDto {
 
@@ -16,12 +17,12 @@ export class CreateColaboradorDto {
 
     @IsString()
     @IsOptional()
-    @IsPhoneNumber()
+    @IsNumberString()
     telefono?: string;
 
     @IsString()
     @IsOptional()
-    @IsPhoneNumber()
+    @IsNumberString()
     celular?: string;
 
     @IsString()
@@ -35,6 +36,7 @@ export class CreateColaboradorDto {
     @MinLength(8)
     contrasenia: string;
 
-    @IsIn(['secretaria', 'invitado', 'recepcionista'])
+    @IsString()
+    @MinLength(1)
     rol: string;
 }
