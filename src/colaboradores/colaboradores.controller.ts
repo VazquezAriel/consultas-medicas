@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { ColaboradoresService } from './colaboradores.service';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
@@ -17,18 +17,18 @@ export class ColaboradoresController {
     return this.colaboradoresService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.colaboradoresService.findOne(+id);
+  @Get(':termino')
+  findBy(@Param('termino', ) termino: string) {
+    return this.colaboradoresService.findBy(termino);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateColaboradoreDto: UpdateColaboradorDto) {
-    return this.colaboradoresService.update(+id, updateColaboradoreDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateColaboradoreDto: UpdateColaboradorDto) {
+    return this.colaboradoresService.update(id, updateColaboradoreDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.colaboradoresService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.colaboradoresService.remove(id);
   }
 }

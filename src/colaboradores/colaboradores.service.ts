@@ -1,10 +1,13 @@
-import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Injectable,  NotFoundException } from '@nestjs/common';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Colaborador } from './entities/colaborador.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RolesService } from '../roles/roles.service';
+import { isUUID } from 'class-validator';
+import handleExceptions from 'src/comun/exepciones/handle-exceptions';
+import { Rol } from 'src/roles/entities/rol.entity';
 
 @Injectable()
 export class ColaboradoresService {
@@ -31,7 +34,7 @@ export class ColaboradoresService {
 
     } catch (error) {
 
-      this.handleExceptions(error);
+      handleExceptions(error);
 
     }
   }
@@ -47,24 +50,77 @@ export class ColaboradoresService {
     
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} colaboradore`;
+  async findBy(termino: string) {
+
+    let colaborador:Colaborador;
+
+    if (isUUID(termino))
+      colaborador = await this.repository.findOneBy({id:termino});
+
+    if (colaborador)
+      return {...colaborador, rol: colaborador.rol.descripcion};
+
+    const colaboradores:Colaborador[] = await this.repository.find({
+      where: [
+        {nombres: Like(`%${termino}%`)},
+        {apellidos: Like(`%${termino}%`)},
+        {cedula: Like(`%${termino}%`)}
+      ]
+    });
+
+    return colaboradores.map(colaborador => ({
+      ...colaborador,
+      rol: colaborador.rol.descripcion
+    }));
   }
 
-  update(id: number, updateColaboradoreDto: UpdateColaboradorDto) {
-    return `This action updates a #${id} colaboradore`;
+  async findOneById(id:string) {
+
+    const colaborador = await this.repository.findOneBy({id:id});
+
+    if (!colaborador)
+      throw new NotFoundException(`Colaborador con id ${id} no encontrado`);
+
+    return colaborador;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} colaboradore`;
+  async update(id: string, {rol, ...updateColaboradorDto}: UpdateColaboradorDto) {
+
+    let rolObj:Rol;
+
+    const colaborador = await this.repository.preload({
+      id: id,
+      ...updateColaboradorDto,
+    });
+
+    if (!colaborador) throw new NotFoundException(`Colaborador con id ${id} no encontrado`);
+
+    if (rol) {
+
+      rolObj = await this.rolesService.findByDescripcion(rol);
+
+      colaborador.rol = rolObj ? rolObj : (await this.findOneById(id)).rol;
+    }
+    
+    try {
+
+      await this.repository.save(colaborador);
+
+    } catch (error) {
+
+      handleExceptions(error);
+    }
+
+    return {...colaborador, rol: colaborador.rol.descripcion};
   }
 
-  private handleExceptions(error:any) {
+  async remove(id: string) {
 
-    if (error.code === '23505') 
-      throw new BadRequestException(error.detail);
+    const colaborador = await this.findOneById(id);
 
-    throw new InternalServerErrorException('Unexpected error, check server logs');
+    await this.repository.remove(colaborador);
 
+    return colaborador;
   }
+
 }
