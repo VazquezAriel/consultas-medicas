@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePacienteDto } from './dto/create-paciente.dto';
 import { UpdatePacienteDto } from './dto/update-paciente.dto';
 import { Like, Repository } from 'typeorm';
 import { Paciente } from './entities/paciente.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import handleExceptions from '../comun/exepciones/handle-exceptions';
+import { isUUID } from 'class-validator';
 
 @Injectable()
 export class PacientesService {
@@ -34,7 +35,16 @@ export class PacientesService {
     return await this.repository.find();
   }
 
-  findBy(termino: string) {
+  async findBy(termino: string) {
+
+    let paciente:Paciente;
+
+    if (isUUID(termino))
+      paciente = await this.repository.findOneBy({id:termino});
+
+    if (paciente)
+    
+      return paciente;
 
     return this.repository.find({
       where: [
@@ -45,11 +55,43 @@ export class PacientesService {
     });
   }
 
-  update(id: number, updatePacienteDto: UpdatePacienteDto) {
-    return `This action updates a #${id} paciente`;
+  async findOneById(id:string) {
+
+    const paciente = await this.repository.findOneBy({id:id});
+
+    if (!paciente)
+      throw new NotFoundException(`Paciente con id ${id} not found`);
+
+    return paciente;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} paciente`;
+  async update(id: string, updatePacienteDto: UpdatePacienteDto) {
+
+    const paciente = await this.repository.preload({
+      id: id,
+      ...updatePacienteDto
+    })
+
+    if (!paciente) throw new NotFoundException(`Paciente con id ${id} no encontrado`);
+
+    try {
+
+      await this.repository.save(paciente);
+
+    } catch (error) {
+
+      handleExceptions(error);
+    }
+
+    return paciente;
+  }
+
+  async remove(id: string) {
+
+    const paciente = await this.findOneById(id);
+
+    await this.repository.remove(paciente);
+
+    return paciente;
   }
 }
