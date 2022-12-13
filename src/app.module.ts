@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ComprobantesModule } from './comprobantes/comprobantes.module';
 import { ColaboradoresModule } from './colaboradores/colaboradores.module';
 import { RolesModule } from './roles/roles.module';
+import { PacientesModule } from './pacientes/pacientes.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { RolesModule } from './roles/roles.module';
     }),
     ComprobantesModule,
     ColaboradoresModule,
-    RolesModule
+    RolesModule,
+    PacientesModule
     
   ],
 })

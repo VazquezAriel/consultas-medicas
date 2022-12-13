@@ -1,5 +1,6 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import handleExceptions from 'src/comun/exepciones/handle-exceptions';
 import { Repository } from 'typeorm';
 import { CreateComprobanteDto } from './dto/create-comprobante.dto';
 import { UpdateComprobanteDto } from './dto/update-comprobante.dto';
@@ -24,7 +25,9 @@ export class ComprobantesService {
       return comprobante;
       
     } catch (error) {
-      this.handleExceptions(error);
+
+      handleExceptions(error);
+      
     }
   }
 
@@ -44,13 +47,6 @@ export class ComprobantesService {
     return `This action removes a #${id} comprobante`;
   }
 
-  private handleExceptions(error:any) {
-
-    if (error.code === '23505') 
-      throw new BadRequestException(error.detail);
-
-    throw new InternalServerErrorException('Unexpected error, check server logs');
-
-  }
+  
 
 }
