@@ -67,6 +67,15 @@ export class EspecialidadesService {
 
   }
 
+  async findOneByDescripcion(descripcion: string) {
+
+    const especialidad = await this.repository.findOneBy({descripcion: descripcion});
+
+    if (!especialidad) throw new NotFoundException(`La especialidad '${descripcion}' no fue encontrada`);
+
+    return especialidad ;
+  }
+
   async update(id: string, updateEspecialidadeDto: UpdateEspecialidadDto) {
 
     const especialidad = await this.repository.preload({
@@ -75,6 +84,15 @@ export class EspecialidadesService {
     })
 
     if (!especialidad) throw new NotFoundException(`Especialidad con id ${id} no encontrada`);
+
+    try {
+
+      await this.repository.save(especialidad);
+
+    } catch (error) {
+
+      handleExceptions(error);
+    }
 
     return especialidad;
   }

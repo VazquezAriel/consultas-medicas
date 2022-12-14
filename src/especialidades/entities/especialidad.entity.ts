@@ -10,6 +10,6 @@ export class Especialidad {
     @Column('text', {unique: true})
     descripcion: string;
 
-    @OneToMany(() => Medico, (medico) => medico.especialidad, {eager: true, nullable: true})
+    @OneToMany(() => Medico, (medico) => medico.especialidad, {nullable: true})
     medicos?:Medico[];
 }
