@@ -30,8 +30,8 @@ export class RolesService {
     return rol;
   }
 
-  findAll() {
-    return this.repository.find();
+  async findAll() {
+    return await this.repository.find();
   }
 
   async findByDescripcion(descripcion: string) {

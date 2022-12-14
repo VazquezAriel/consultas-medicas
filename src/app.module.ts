@@ -5,6 +5,8 @@ import { ComprobantesModule } from './comprobantes/comprobantes.module';
 import { ColaboradoresModule } from './colaboradores/colaboradores.module';
 import { RolesModule } from './roles/roles.module';
 import { PacientesModule } from './pacientes/pacientes.module';
+import { MedicosModule } from './medicos/medicos.module';
+import { EspecialidadesModule } from './especialidades/especialidades.module';
 
 @Module({
   imports: [
@@ -22,7 +24,9 @@ import { PacientesModule } from './pacientes/pacientes.module';
     ComprobantesModule,
     ColaboradoresModule,
     RolesModule,
-    PacientesModule
+    PacientesModule,
+    MedicosModule,
+    EspecialidadesModule
     
   ],
 })
