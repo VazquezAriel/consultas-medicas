@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import handleExceptions from 'src/comun/exepciones/handle-exceptions';
 import { Repository } from 'typeorm';
 import { CreateRolDto } from './dto/create-rol.dto';
 import { Rol } from './entities/rol.entity';
@@ -16,7 +17,15 @@ export class RolesService {
 
     const rol = this.repository.create(createRoleDto);
 
-    await this.repository.save(rol);
+    try {
+
+      await this.repository.save(rol);
+
+    } catch (error) {
+
+      handleExceptions(error);
+      
+    }
 
     return rol;
   }
@@ -29,7 +38,7 @@ export class RolesService {
 
     const rol = await this.repository.findOneBy({descripcion: descripcion});
 
-    if (!rol) throw new NotFoundException(`This rol (${descripcion}) not exist`);
+    if (!rol) throw new NotFoundException(`El rol con descripcion '${descripcion}' no existe`);
 
     return rol;
   }
