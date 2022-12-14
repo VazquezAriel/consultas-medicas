@@ -33,37 +33,37 @@ npm run start:dev
 
 1. Gerardo Guamani
  ```
-	- CRUD de usuarios que manejan el sistema(Colaboradores)
-	- Servicios de login
-	- Servicios de recuperar contraseña
+- CRUD de usuarios que manejan el sistema(Colaboradores)
+- Servicios de login
+- Servicios de recuperar contraseña
 ```
 
 2. Joseph Herrera
 ```
-	- CRUD de pacientes
-	- CRUD de doctores
-	- Servicio de emision de certificados medicos
+- CRUD de pacientes
+- CRUD de doctores
+- Servicio de emision de certificados medicos
 ```
 
 3. John Farez
 ```
-	- CRUD de citas
-	- Servicio que mediante la cédula, retorne las citas atendidas, canceladas y           pendientes.
-	- Servicio que devuelva un calendario de atencion.
+- CRUD de citas
+- Servicio que mediante la cédula, retorne las citas atendidas, canceladas y pendientes.
+- Servicio que devuelva un calendario de atencion.
 ```
 
 4. Bryan Parra
 ```
-	- CRUD de consultas
-	- CRUD de prescripciones medicas.
-	- CRUD de ordenes medicas
+- CRUD de consultas
+- CRUD de prescripciones medicas.
+- CRUD de ordenes medicas
 ```
 
 5. Ariel Vazquez
 ```
-  - Creacion del proyecto, vinculacion con BD y despliegue
-	- CRUD de comprobantes
-	- CRUD de transacciones
+- Creacion del proyecto, vinculacion con BD y despliegue
+- CRUD de comprobantes
+- CRUD de transacciones
 ```
 
 
