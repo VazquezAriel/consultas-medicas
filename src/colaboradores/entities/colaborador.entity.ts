@@ -1,5 +1,5 @@
 import { Rol } from 'src/roles/entities/rol.entity';
-import { BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { Persona } from '../../comun/clases/persona';
 
 @Entity()

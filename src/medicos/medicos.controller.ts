@@ -19,16 +19,16 @@ export class MedicosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.medicosService.findOne(+id);
+    return this.medicosService.findBy(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMedicoDto: UpdateMedicoDto) {
-    return this.medicosService.update(+id, updateMedicoDto);
+    return this.medicosService.update(id, updateMedicoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.medicosService.remove(+id);
+    return this.medicosService.remove(id);
   }
 }
