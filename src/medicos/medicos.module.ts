@@ -8,7 +8,6 @@ import { EspecialidadesModule } from '../especialidades/especialidades.module';
 @Module({
   controllers: [MedicosController],
   providers: [MedicosService],
-  exports: [MedicosService],
   imports: [
     EspecialidadesModule,
     TypeOrmModule.forFeature([Medico])

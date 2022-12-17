@@ -11,7 +11,6 @@ import { Cita } from './entities/cita.entity';
   providers: [CitasService],
   imports:[
     PacientesModule,
-    MedicosModule,
     TypeOrmModule.forFeature([Cita])
   ]
 })
