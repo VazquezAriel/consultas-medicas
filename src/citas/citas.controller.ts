@@ -22,6 +22,11 @@ export class CitasController {
     return this.citasService.findOne(id);
   }
 
+  @Get('mis-citas/:cedula')
+  findByCedula(@Param('cedula') cedula: string) {
+    return this.citasService.findByCedula(cedula);
+  }
+
   @Patch(':id')
   update(@Param('id', ParseUUIDPipe) id: string, @Body() updateCitaDto: UpdateCitaDto) {
     return this.citasService.update(id, updateCitaDto);

@@ -5,13 +5,15 @@ import { Repository } from 'typeorm';
 import { Cita } from './entities/cita.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import handleExceptions from '../comun/exepciones/handle-exceptions';
+import { PacientesService } from '../pacientes/pacientes.service';
 
 @Injectable()
 export class CitasService {
 
   constructor(
     @InjectRepository(Cita)
-    private readonly repository:Repository<Cita>
+    private readonly repository:Repository<Cita>,
+    private readonly pacientesService:PacientesService
   ){}
 
   async create(createCitaDto: CreateCitaDto) {
@@ -43,6 +45,13 @@ export class CitasService {
       throw new NotFoundException(`No se encontro la cita ${id}`);
 
     return cita;
+  }
+
+  async findByCedula(cedula: string) {
+    
+    const paciente = await this.pacientesService.findOneByCedula(cedula);
+
+    return await this.repository.findBy({paciente:paciente});
   }
 
   async update(id: string, updateCitaDto: UpdateCitaDto) {

@@ -49,8 +49,7 @@ export class PacientesService {
     return this.repository.find({
       where: [
         {nombres: Like(`%${termino}%`)},
-        {apellidos: Like(`%${termino}%`)},
-        {cedula: Like(`%${termino}%`)}
+        {apellidos: Like(`%${termino}%`)}
       ]
     });
   }
@@ -61,6 +60,16 @@ export class PacientesService {
 
     if (!paciente)
       throw new NotFoundException(`Paciente con id ${id} not found`);
+
+    return paciente;
+  }
+
+  async findOneByCedula(cedula:string) {
+
+    const paciente = await this.repository.findOneBy({cedula:cedula});
+
+    if (!paciente)
+      throw new NotFoundException(`Paciente con cedula ${cedula} not encontrado`);
 
     return paciente;
   }
