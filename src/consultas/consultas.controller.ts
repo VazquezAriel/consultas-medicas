@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ConsultasService } from './consultas.service';
 import { CreateConsultaDto } from './dto/create-consulta.dto';
 import { UpdateConsultaDto } from './dto/update-consulta.dto';
+import { IsUUID } from 'class-validator';
+import { ParseUUIDPipe } from '@nestjs/common/pipes';
 
 @Controller('consultas')
 export class ConsultasController {
@@ -18,17 +20,17 @@ export class ConsultasController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.consultasService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.consultasService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateConsultaDto: UpdateConsultaDto) {
-    return this.consultasService.update(+id, updateConsultaDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateConsultaDto: UpdateConsultaDto) {
+    return this.consultasService.update(id, updateConsultaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.consultasService.remove(+id);
+    return this.consultasService.remove(id);
   }
 }

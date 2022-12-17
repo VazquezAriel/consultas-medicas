@@ -20,7 +20,7 @@ export class OrdenMedica {
     @Column('text')
     tratamiento:string;
 
-    @ManyToOne(() => Consulta, (consulta) => consulta.ordenesMedicas)
+    @ManyToOne(() => Consulta, (consulta) => consulta.ordenesMedicas, {onDelete:'CASCADE'})
     consulta:Consulta;
 
     @OneToMany(() => PreescripcionMedica, (preescripcion) => preescripcion.ordenMedica, {eager: true, cascade:true})

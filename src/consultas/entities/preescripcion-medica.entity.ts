@@ -17,6 +17,6 @@ export class PreescripcionMedica {
     @Column('numeric')
     dias:number;
 
-    @ManyToOne(() => OrdenMedica, (ordenMedica) => ordenMedica.preescripciones)
+    @ManyToOne(() => OrdenMedica, (ordenMedica) => ordenMedica.preescripciones, {onDelete:'CASCADE'})
     ordenMedica:OrdenMedica;
 }
