@@ -12,8 +12,6 @@ import { MedicosModule } from '../medicos/medicos.module';
   controllers: [ConsultasController],
   providers: [ConsultasService],
   imports: [
-    PacientesModule,
-    MedicosModule,
     TypeOrmModule.forFeature([Consulta, PreescripcionMedica, OrdenMedica])
   ]
 })

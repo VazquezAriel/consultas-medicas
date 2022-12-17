@@ -1,3 +1,4 @@
+import { Cita } from 'src/citas/entities/cita.entity';
 import { Persona } from 'src/comun/clases/persona';
 import { Consulta } from 'src/consultas/entities/consulta.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
@@ -8,7 +9,7 @@ export class Paciente extends Persona{
     @Column('date')
     fechaNacimiento?: Date;
 
-    @OneToMany(() => Consulta, (consulta) => consulta.paciente, {nullable: true})
-    consultas?:Consulta[];
+    @OneToMany(() => Cita, (cita) => cita.paciente, {nullable: true})
+    citas?:Cita[];
 
 }
