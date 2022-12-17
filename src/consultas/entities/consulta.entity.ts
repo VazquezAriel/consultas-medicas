@@ -1,6 +1,7 @@
 import { Medico } from 'src/medicos/entities/medico.entity';
 import { Paciente } from 'src/pacientes/entities/paciente.entity';
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { OrdenMedica } from './orden-medica.entity';
 
 @Entity()
 export class Consulta {
@@ -8,7 +9,7 @@ export class Consulta {
     @PrimaryGeneratedColumn('uuid')
     id:string;
 
-    @Column('text')
+    @Column('text', {default: 'NaN'})
     observacion:string;
 
     @Column('numeric')
@@ -19,5 +20,8 @@ export class Consulta {
 
     @ManyToOne(() => Medico, (medico) => medico.consultas, {nullable: false, eager: true})
     medico:Medico;
+
+    @OneToMany(() => OrdenMedica, (ordenes) => ordenes.consulta, {nullable: false, eager: true, cascade:true})
+    ordenesMedicas:OrdenMedica[];
 
 }

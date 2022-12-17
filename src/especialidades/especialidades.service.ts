@@ -99,9 +99,9 @@ export class EspecialidadesService {
 
   async remove(id: string) {
 
-    const especialidad = await this.findOneById(id);
+    const especialidad:Especialidad = await this.findOneById(id);
 
-    await this.repository.delete(especialidad);
+    await this.repository.delete(await this.findOneById(id));
 
     return especialidad;
   }

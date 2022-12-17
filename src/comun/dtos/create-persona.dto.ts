@@ -1,4 +1,4 @@
-import { IsEmail, IsNumberString, IsOptional, IsString, Length, MinLength } from "class-validator";
+import { IsEmail, IsNumberString, IsOptional, IsString, IsUUID, Length, MinLength } from "class-validator";
 
 export class CreatePersonaDto {
 

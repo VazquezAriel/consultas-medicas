@@ -6,9 +6,9 @@ import { Column, Entity, OneToMany } from 'typeorm';
 export class Paciente extends Persona{
 
     @Column('date')
-    fechaNacimiento: Date;
+    fechaNacimiento?: Date;
 
     @OneToMany(() => Consulta, (consulta) => consulta.paciente, {nullable: true})
-    consultas:Consulta[];
+    consultas?:Consulta[];
 
 }

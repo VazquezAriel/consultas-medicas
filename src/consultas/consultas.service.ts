@@ -1,15 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateConsultaDto } from './dto/create-consulta.dto';
 import { UpdateConsultaDto } from './dto/update-consulta.dto';
+import { Consulta } from './entities/consulta.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import handleExceptions from 'src/comun/exepciones/handle-exceptions';
 
 @Injectable()
 export class ConsultasService {
-  create(createConsultaDto: CreateConsultaDto) {
-    return 'This action adds a new consulta';
+
+  constructor(
+    @InjectRepository(Consulta)
+    private readonly repository:Repository<Consulta>,
+  ){}
+
+  async create(createConsultaDto:CreateConsultaDto) {
+
+    const consulta = this.repository.create(createConsultaDto);
+    
+    try {
+
+      await this.repository.save(consulta);
+      
+    } catch (error) {
+
+      handleExceptions(error);
+
+    }
+
+    return consulta;
   }
 
   findAll() {
-    return `This action returns all consultas`;
+    return this.repository.find();
   }
 
   findOne(id: number) {
