@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsString, MinLength, IsOptional, IsNumber, ValidateNested, IsArray } from 'class-validator';
+import { IsString, MinLength, IsOptional, IsNumber, ValidateNested, IsArray, IsObject } from 'class-validator';
 import { CreateOrdenDto } from './create-orden-medica.dto';
 import { OrdenMedica } from '../entities/orden-medica.entity';
 import { Cita } from 'src/citas/entities/cita.entity';
@@ -20,7 +20,7 @@ export class CreateConsultaDto {
     @Type(() => CreateOrdenDto)
     ordenesMedicas:OrdenMedica[];
 
-    @IsOptional()
+    @IsObject()
     @ValidateNested()
     @Type(() => AssignCitaDto)
     cita:Cita;

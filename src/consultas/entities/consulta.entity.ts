@@ -19,6 +19,6 @@ export class Consulta {
 
     @OneToOne(() => Cita, {nullable: false, eager:true})
     @JoinColumn()
-    consulta:Cita;
+    cita:Cita;
 
 }
