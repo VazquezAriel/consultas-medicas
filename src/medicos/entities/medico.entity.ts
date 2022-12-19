@@ -1,10 +1,16 @@
 import { Cita } from 'src/citas/entities/cita.entity';
-import { Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { Persona } from '../../comun/clases/persona';
 import { Especialidad } from '../../especialidades/entities/especialidad.entity';
 
 @Entity()
 export class Medico extends Persona{
+
+    @Column('text', {nullable:true})
+    usuario:string;
+
+    @Column('text', {nullable: true})
+    contrasenia:string;
 
     @ManyToOne(() => Especialidad, (especialidad) => especialidad.medicos, {nullable: false, eager:true})
     especialidad:Especialidad;

@@ -117,7 +117,7 @@ export class MedicosService {
       handleExceptions(error);
     }
 
-    return {...medico, especialidad: medico.especialidad.descripcion};;
+    return medico;
   }
 
   async remove(id: string) {
