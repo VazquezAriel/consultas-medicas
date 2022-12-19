@@ -1,4 +1,4 @@
-import { Injectable} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import handleExceptions from 'src/comun/exepciones/handle-exceptions';
 import { Repository } from 'typeorm';
@@ -31,22 +31,48 @@ export class ComprobantesService {
     }
   }
 
-  findAll() {
-    return this.repository.find({});
+  async findAll() {
+    return await this.repository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} comprobante`;
+  async findOne(id: string) {
+
+    const comprobante = await this.repository.findOneBy({id:id});
+
+    if(!comprobante)  throw new NotFoundException(`No se encontro la factura ${id}`);
+
+    return comprobante;
   }
 
-  update(id: number, updateComprobanteDto: UpdateComprobanteDto) {
-    return `This action updates a #${id} comprobante`;
+  async update(id: string, updateComprobanteDto: UpdateComprobanteDto) {
+
+    const comprobante =  await this.repository.preload({
+      ...updateComprobanteDto,
+      id:id
+    })
+
+    if (!comprobante) throw new NotFoundException(`No se encontro la factura ${id}`);
+
+    try {
+
+      await this.repository.save(comprobante);
+
+    } catch (error) {
+
+      handleExceptions(error);
+      
+    }
+
+    return comprobante;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} comprobante`;
-  }
+  async remove(id: string) {
 
-  
+    const comprobante = await this.findOne(id);
+
+    await this.repository.remove(comprobante);
+
+    return comprobante;
+  }
 
 }

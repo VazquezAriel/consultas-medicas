@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ConsultasService } from './consultas.service';
 import { CreateConsultaDto } from './dto/create-consulta.dto';
 import { UpdateConsultaDto } from './dto/update-consulta.dto';
-import { IsUUID } from 'class-validator';
 import { ParseUUIDPipe } from '@nestjs/common/pipes';
 
 @Controller('consultas')

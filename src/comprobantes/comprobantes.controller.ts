@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { ComprobantesService } from './comprobantes.service';
 import { CreateComprobanteDto } from './dto/create-comprobante.dto';
 import { UpdateComprobanteDto } from './dto/update-comprobante.dto';
@@ -18,17 +18,17 @@ export class ComprobantesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.comprobantesService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.comprobantesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateComprobanteDto: UpdateComprobanteDto) {
-    return this.comprobantesService.update(+id, updateComprobanteDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateComprobanteDto: UpdateComprobanteDto) {
+    return this.comprobantesService.update(id, updateComprobanteDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.comprobantesService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.comprobantesService.remove(id);
   }
 }

@@ -8,8 +8,8 @@ export class Consulta {
     @PrimaryGeneratedColumn('uuid')
     id:string;
 
-    @Column('text', {default: 'NaN'})
-    observacion:string;
+    @Column('text')
+    detalle:string;
 
     @Column('numeric')
     costo:number;

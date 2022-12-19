@@ -51,7 +51,7 @@ export class CitasService {
     
     const paciente = await this.pacientesService.findOneByCedula(cedula);
 
-    return await this.repository.findBy({paciente:paciente});
+    return await this.repository.findBy({paciente:{id: paciente.id}});
   }
 
   async update(id: string, updateCitaDto: UpdateCitaDto) {

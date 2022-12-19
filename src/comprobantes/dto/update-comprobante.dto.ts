@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { OmitType, PartialType } from '@nestjs/mapped-types';
 import { CreateComprobanteDto } from './create-comprobante.dto';
 
-export class UpdateComprobanteDto extends PartialType(CreateComprobanteDto) {}
+export class UpdateComprobanteDto extends PartialType(OmitType(CreateComprobanteDto, ['detalles'] as const)) {}
