@@ -1,6 +1,7 @@
 import { Paciente } from "src/pacientes/entities/paciente.entity";
 import { BeforeInsert, Column, Entity, Generated, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { DetalleComprobante } from './detalle-comprobante.entity';
+import { Transaccion } from '../../transacciones/entities/transaccion.entity';
 
 @Entity()
 export class Comprobante {
@@ -35,6 +36,9 @@ export class Comprobante {
 
     @ManyToOne(() => Paciente, (paciente) => paciente.comprobantes)
     paciente:Paciente;
+
+    @OneToMany(() => Transaccion, (transaccion) => transaccion.comprobante, {nullable: true} )
+    transacciones?:Transaccion[];
 
     @BeforeInsert()
     getFecha(){

@@ -9,6 +9,7 @@ import { MedicosModule } from './medicos/medicos.module';
 import { EspecialidadesModule } from './especialidades/especialidades.module';
 import { ConsultasModule } from './consultas/consultas.module';
 import { CitasModule } from './citas/citas.module';
+import { TransaccionesModule } from './transacciones/transacciones.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { CitasModule } from './citas/citas.module';
     MedicosModule,
     EspecialidadesModule,
     ConsultasModule,
-    CitasModule
+    CitasModule,
+    TransaccionesModule
     
   ],
 })
