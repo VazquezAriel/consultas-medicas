@@ -1,4 +1,4 @@
-import { Colaborador } from 'src/colaboradores/entities/colaborador.entity';
+import { Colaborador } from '../../colaboradores/entities/colaborador.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Rol {

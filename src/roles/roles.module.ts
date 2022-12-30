@@ -4,6 +4,8 @@ import { RolesController } from './roles.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Rol } from './entities/rol.entity';
 
+const mockRepository = {};
+
 @Module({
   controllers: [RolesController],
   providers: [RolesService],
