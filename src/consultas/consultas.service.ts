@@ -4,7 +4,7 @@ import { UpdateConsultaDto } from './dto/update-consulta.dto';
 import { Consulta } from './entities/consulta.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import handleExceptions from 'src/comun/exepciones/handle-exceptions';
+import handleExceptions from '../comun/exepciones/handle-exceptions';
 
 @Injectable()
 export class ConsultasService {

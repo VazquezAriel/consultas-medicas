@@ -1,7 +1,7 @@
 import { Type } from "class-transformer";
 import { IsDateString, IsIn, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
-import { Medico } from "src/medicos/entities/medico.entity";
-import { Paciente } from "src/pacientes/entities/paciente.entity";
+import { Medico } from "../../medicos/entities/medico.entity";
+import { Paciente } from "../../pacientes/entities/paciente.entity";
 import { AssignMedicoDto } from "./assign-medico.dto";
 import { AssignPacienteDto } from "./assign-paciente.dto";
 

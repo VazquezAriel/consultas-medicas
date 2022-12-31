@@ -5,8 +5,6 @@ import { Consulta } from './entities/consulta.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PreescripcionMedica } from './entities/preescripcion-medica.entity';
 import { OrdenMedica } from './entities/orden-medica.entity';
-import { ConsultasController } from './consultas/consultas.controller';
-import { ConsultasController } from './consultas/consultas.controller';
 
 @Module({
   controllers: [ConsultasController],

@@ -1,4 +1,4 @@
-import { Medico } from 'src/medicos/entities/medico.entity';
+import { Medico } from '../../medicos/entities/medico.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

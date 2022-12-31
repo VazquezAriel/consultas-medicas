@@ -1,7 +1,7 @@
-import { Paciente } from "src/pacientes/entities/paciente.entity";
 import { BeforeInsert, Column, Entity, Generated, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { DetalleComprobante } from './detalle-comprobante.entity';
 import { Transaccion } from '../../transacciones/entities/transaccion.entity';
+import { Paciente } from "../../pacientes/entities/paciente.entity";
 
 @Entity()
 export class Comprobante {

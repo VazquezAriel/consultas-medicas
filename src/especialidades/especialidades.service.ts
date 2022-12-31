@@ -5,7 +5,7 @@ import { Like, Repository } from 'typeorm';
 import { Especialidad } from './entities/especialidad.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { isUUID } from 'class-validator';
-import handleExceptions from 'src/comun/exepciones/handle-exceptions';
+import handleExceptions from '../comun/exepciones/handle-exceptions';
 
 @Injectable()
 export class EspecialidadesService {

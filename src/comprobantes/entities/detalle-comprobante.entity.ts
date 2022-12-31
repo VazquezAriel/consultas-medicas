@@ -1,4 +1,4 @@
-import { Consulta } from "src/consultas/entities/consulta.entity";
+import { Consulta } from "../../consultas/entities/consulta.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Comprobante } from "./comprobante.entity";
 

@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsString, IsNumber, IsPositive, IsOptional, IsNotEmpty, IsIn, IsArray, ValidateNested, IsObject, Min } from 'class-validator';
-import { Paciente } from 'src/pacientes/entities/paciente.entity';
+import { Paciente } from '../../pacientes/entities/paciente.entity';
 import { DetalleComprobante } from '../entities/detalle-comprobante.entity';
 import { CreateDetalleComprobanteDto } from './create-detalle-comprobante.dto';
 import { AssignPacienteDto } from '../../citas/dto/assign-paciente.dto';

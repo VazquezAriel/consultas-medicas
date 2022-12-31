@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsNumber, IsPositive, ValidateNested, IsObject } from 'class-validator';
-import { Consulta } from 'src/consultas/entities/consulta.entity';
+import { Consulta } from '../../consultas/entities/consulta.entity';
 import { AssignConsultaDto } from './assign-consulta.dto';
 
 export class CreateDetalleComprobanteDto {

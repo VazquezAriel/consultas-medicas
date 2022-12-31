@@ -1,4 +1,4 @@
-import { Comprobante } from 'src/comprobantes/entities/comprobante.entity';
+import { Comprobante } from '../../comprobantes/entities/comprobante.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BeforeInsert } from 'typeorm';
 
 @Entity()

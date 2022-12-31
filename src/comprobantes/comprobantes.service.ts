@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import handleExceptions from 'src/comun/exepciones/handle-exceptions';
+import handleExceptions from '../comun/exepciones/handle-exceptions';
 import { Repository } from 'typeorm';
 import { CreateComprobanteDto } from './dto/create-comprobante.dto';
 import { UpdateComprobanteDto } from './dto/update-comprobante.dto';

@@ -1,4 +1,4 @@
-import { Rol } from 'src/roles/entities/rol.entity';
+import { Rol } from '../../roles/entities/rol.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Persona } from '../../comun/clases/persona';
 

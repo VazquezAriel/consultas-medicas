@@ -14,15 +14,17 @@ import { TransaccionesModule } from './transacciones/transacciones.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      autoLoadEntities: true,
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        type: 'postgres',
+        host: process.env.DB_HOST,
+        port: +process.env.DB_PORT,
+        database: process.env.DB_NAME,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        autoLoadEntities: true,
+        synchronize: true,
+      })
     }),
     ComprobantesModule,
     ColaboradoresModule,
