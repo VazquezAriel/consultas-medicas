@@ -4,7 +4,7 @@ import { UpdateMedicoDto } from './dto/update-medico.dto';
 import { Like, Repository } from 'typeorm';
 import { Medico } from './entities/medico.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import handleExceptions from 'src/comun/exepciones/handle-exceptions';
+import handleExceptions from '../comun/exepciones/handle-exceptions';
 import { isUUID } from 'class-validator';
 import { EspecialidadesService } from '../especialidades/especialidades.service';
 import { Especialidad } from '../especialidades/entities/especialidad.entity';

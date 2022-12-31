@@ -1,4 +1,4 @@
-import { Cita } from 'src/citas/entities/cita.entity';
+import { Cita } from '../../citas/entities/cita.entity';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { Persona } from '../../comun/clases/persona';
 import { Especialidad } from '../../especialidades/entities/especialidad.entity';
