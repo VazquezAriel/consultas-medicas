@@ -6,7 +6,7 @@ import { Colaborador } from './entities/colaborador.entity';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
 import { RolesService } from '../roles/roles.service';
-import { Rol } from 'src/roles/entities/rol.entity';
+import { Rol } from '../roles/entities/rol.entity';
 
 describe('ColaboradoresController', () => {
   let controller: ColaboradoresController;
