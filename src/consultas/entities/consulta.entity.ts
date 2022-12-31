@@ -1,4 +1,4 @@
-import { Cita } from 'src/citas/entities/cita.entity';
+import { Cita } from '../../citas/entities/cita.entity';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { OrdenMedica } from './orden-medica.entity';
 
