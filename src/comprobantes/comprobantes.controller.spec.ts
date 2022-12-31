@@ -71,8 +71,8 @@ describe('ComprobantesController', () => {
       jest.spyOn(comprobantesService, 'remove').mockImplementation(() =>
         Promise.resolve([{name: 'example'}] as unknown as Promise<Comprobante>)
       );
-      const comprobanteUpdated = await controller.remove('idExample');
-      expect(comprobanteUpdated);
+      const comprobanteDeleted = await controller.remove('idExample');
+      expect(comprobanteDeleted);
       expect(comprobantesService.remove).toHaveBeenCalledTimes(1);
     })
   })
