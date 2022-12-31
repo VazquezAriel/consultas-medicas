@@ -4,7 +4,7 @@ import { UpdateTransaccionDto } from './dto/update-transaccion.dto';
 import { Repository } from 'typeorm';
 import { Transaccion } from './entities/transaccion.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import handleExceptions from 'src/comun/exepciones/handle-exceptions';
+import handleExceptions from '../comun/exepciones/handle-exceptions';
 
 @Injectable()
 export class TransaccionesService {
