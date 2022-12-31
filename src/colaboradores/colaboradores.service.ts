@@ -6,8 +6,8 @@ import { Colaborador } from './entities/colaborador.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RolesService } from '../roles/roles.service';
 import { isUUID } from 'class-validator';
-import handleExceptions from 'src/comun/exepciones/handle-exceptions';
-import { Rol } from 'src/roles/entities/rol.entity';
+import handleExceptions from '../comun/exepciones/handle-exceptions';
+import { Rol } from '../roles/entities/rol.entity';
 
 @Injectable()
 export class ColaboradoresService {
