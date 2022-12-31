@@ -1,5 +1,5 @@
 import { IsDate, IsDateString, Length } from 'class-validator';
-import { CreatePersonaDto } from "src/comun/dtos/create-persona.dto";
+import { CreatePersonaDto } from "../../comun/dtos/create-persona.dto";
 
 export class CreatePacienteDto extends CreatePersonaDto{
 

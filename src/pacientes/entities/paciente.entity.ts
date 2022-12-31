@@ -1,6 +1,6 @@
-import { Cita } from 'src/citas/entities/cita.entity';
-import { Comprobante } from 'src/comprobantes/entities/comprobante.entity';
-import { Persona } from 'src/comun/clases/persona';
+import { Cita } from '../../citas/entities/cita.entity';
+import { Comprobante } from '../../comprobantes/entities/comprobante.entity';
+import { Persona } from '../../comun/clases/persona';
 import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity()
