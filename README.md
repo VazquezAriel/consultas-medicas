@@ -28,6 +28,10 @@ docker-compose up -d
 ```
 npm run start:dev
 ```
+6. Ejecutar test
+```
+npm run test
+```
 
 # Actividades Planificadas
 
@@ -71,4 +75,10 @@ npm run start:dev
 * Postgresql
 * Nest
 * Docker
+
+# Ejecucion de las pruebas unitarias
+
+<p align="left">
+  <img src="src/assets/test.PNG" width="600" alt="Nest Logo" />
+</p>
 
