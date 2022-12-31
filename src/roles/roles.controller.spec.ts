@@ -34,7 +34,7 @@ describe('RolesController', () => {
   });
 
   describe('getRoles', () => {
-    it ('must return an Array of type Roles', async () => {
+    it ('should return an array of roles', async () => {
       jest.spyOn(rolesService, 'findAll').mockImplementation(() =>
         Promise.resolve([{name: 'example'}] as unknown as Promise<Rol[]>)
       );
