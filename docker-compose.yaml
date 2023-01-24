@@ -7,8 +7,20 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      DATABASE_HOST: localhost
+      POSTGRES_PASSWORD: Contrasenia@1
+      POSTGRES_DB: consultas-medicasDB
+      POSTGRES_USER: postgres
     container_name: consultas-medicas
     volumes:
       - ./postgres:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "bryamparra2709@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "bepz1234"
+    ports:
+      - "80:80"
+    depends_on:
+      - db
