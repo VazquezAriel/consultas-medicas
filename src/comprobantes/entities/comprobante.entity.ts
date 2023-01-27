@@ -34,7 +34,7 @@ export class Comprobante {
     @OneToMany(() => DetalleComprobante, (detalle) => detalle.comprobante, {nullable: false, cascade:true, eager:true} )
     detalles:DetalleComprobante[];
 
-    @ManyToOne(() => Paciente, (paciente) => paciente.comprobantes)
+    @ManyToOne(() => Paciente, (paciente) => paciente.comprobantes, {eager:true})
     paciente:Paciente;
 
     @OneToMany(() => Transaccion, (transaccion) => transaccion.comprobante, {nullable: true} )
